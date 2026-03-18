@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Next For Crypto In LATAM? | iwritewhatiwrite</title>
+<meta name="description" content="a crypto and ai newsletter which may or may not contain use of strong language">
+<link rel="icon" type="image/png" href="Graffiti quill with ink splatters.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Don Graffiti';
+    src: url('DonGraffiti.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7DA;
+    --black: #1A1A1A;
+    --red: #D42B2B;
+    --red-dark: #B01E1E;
+    --red-bright: #FF3333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  ::selection {
+    background: var(--red);
+    color: var(--cream);
+  }
+
+  /* ========== NAV ========== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: var(--cream);
+    border-bottom: 2px solid var(--black);
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Don Graffiti', cursive;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-logo:hover { color: var(--red); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--black);
+    text-decoration: none;
+    position: relative;
+    padding: 4px 8px;
+    transition: color 0.15s;
+  }
+
+  .nav-links a::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -6px; right: -6px; bottom: -4px;
+    background: var(--red);
+    border-radius: 2px;
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+    background-image:
+      radial-gradient(circle at 10% 50%, var(--red-bright) 1px, transparent 2px),
+      radial-gradient(circle at 90% 30%, var(--red-bright) 1px, transparent 2px),
+      radial-gradient(circle at 50% 80%, var(--red-dark) 1px, transparent 2px),
+      radial-gradient(circle at 30% 20%, transparent 1px, var(--red) 1px);
+    background-size: 8px 8px, 6px 6px, 10px 10px, 100% 100%;
+  }
+
+  .nav-links a:hover::before { transform: scaleX(1) rotate(-1deg); }
+  .nav-links a:hover { color: var(--cream); }
+
+  /* ========== ARTICLE HEADER ========== */
+  .article-header {
+    padding: 140px 48px 60px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--black);
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: color 0.2s;
+  }
+
+  .article-back:hover { color: var(--red); }
+  .article-back .back-arrow { transition: transform 0.3s; }
+  .article-back:hover .back-arrow { transform: translateX(-4px); }
+
+  .article-header .meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .article-header .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cream);
+    background: var(--red);
+    padding: 4px 10px;
+  }
+
+  .article-header .date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(26,26,26,0.4);
+  }
+
+  .article-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: rgba(26,26,26,0.6);
+    max-width: 600px;
+  }
+
+  /* ========== ARTICLE BODY ========== */
+  .article-body {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  .article-body p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .article-body a {
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 1px solid var(--red);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .article-body a:hover {
+    color: var(--red-dark);
+    border-color: var(--red-dark);
+  }
+
+  .article-body .pull-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    color: var(--red);
+    border-left: 4px solid var(--red);
+    padding-left: 24px;
+    margin: 48px 0;
+    letter-spacing: 0.5px;
+  }
+
+  .article-body h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+    margin: 56px 0 24px;
+    padding-top: 32px;
+    border-top: 2px solid var(--black);
+  }
+
+  .article-body .data-block {
+    background: var(--cream-dark);
+    border: 2px solid var(--black);
+    padding: 28px;
+    margin: 32px 0;
+  }
+
+  .article-body .data-block p {
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+  }
+
+  .article-body .data-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .article-body ul {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.9;
+    margin-bottom: 24px;
+    padding-left: 24px;
+  }
+
+  .article-body ul li {
+    margin-bottom: 12px;
+  }
+
+  /* ========== GTM SECTION ========== */
+  .gtm-card {
+    background: var(--cream-dark);
+    border: 2px solid var(--black);
+    padding: 28px;
+    margin: 24px 0;
+  }
+
+  .gtm-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    color: var(--red);
+  }
+
+  .gtm-card p {
+    font-size: 0.8rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .gtm-card p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* ========== DIVIDER ========== */
+  .article-end {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+    text-align: center;
+  }
+
+  .article-end-line {
+    width: 60px;
+    height: 3px;
+    background: var(--red);
+    margin: 0 auto 32px;
+  }
+
+  .article-end p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: rgba(26,26,26,0.5);
+    line-height: 1.8;
+  }
+
+  /* ========== SUBSCRIBE ========== */
+  .subscribe {
+    padding: 100px 48px;
+    background: var(--black);
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .subscribe h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .subscribe p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 40px;
+    opacity: 0.7;
+  }
+
+  .subscribe-form {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .subscribe-form input {
+    flex: 1;
+    padding: 16px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    background: transparent;
+    border: 2px solid rgba(245,240,232,0.3);
+    color: var(--cream);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .subscribe-form input::placeholder { color: rgba(245,240,232,0.35); }
+  .subscribe-form input:focus { border-color: var(--red); }
+
+  .subscribe-form button {
+    padding: 16px 32px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--red);
+    color: var(--cream);
+    border: 2px solid var(--red);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .subscribe-form button:hover {
+    background: var(--red-bright);
+    transform: scale(1.02);
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    padding: 40px 48px;
+    border-top: 2px solid var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo { font-family: 'Permanent Marker', cursive; font-size: 1rem; color: var(--black); }
+  .footer-copy { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: rgba(26,26,26,0.4); letter-spacing: 1px; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--black); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--red); }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .article-header { opacity: 0; animation: fadeUp 0.6s 0.2s forwards; }
+  .article-body { opacity: 0; animation: fadeUp 0.6s 0.4s forwards; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 1px; }
+    .article-header { padding: 120px 24px 40px; }
+    .article-body { padding: 0 24px 60px; }
+    .article-end { padding: 0 24px 60px; }
+    .article-body .pull-quote { font-size: 1.6rem; }
+    .article-body h2 { font-size: 1.6rem; }
+    .subscribe { padding: 60px 24px; }
+    .subscribe-form { flex-direction: column; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  /* ========== FLUID MENU ========== */
+  .fluid-menu {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 200;
+    width: 56px;
+  }
+
+  .fluid-menu-container { position: relative; }
+
+  .fluid-menu-trigger {
+    position: relative;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--black);
+    border: 2px solid var(--black);
+    cursor: pointer;
+    z-index: 210;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, border-color 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .fluid-menu-trigger:hover { background: var(--red); border-color: var(--red); }
+
+  .fluid-menu-trigger svg {
+    width: 22px; height: 22px;
+    stroke: var(--cream); stroke-width: 1.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .fluid-menu-trigger .icon-menu { opacity: 1; transform: scale(1) rotate(0deg); }
+  .fluid-menu-trigger .icon-close { opacity: 0; transform: scale(0) rotate(-180deg); }
+  .fluid-menu.expanded .fluid-menu-trigger .icon-menu { opacity: 0; transform: scale(0) rotate(180deg); }
+  .fluid-menu.expanded .fluid-menu-trigger .icon-close { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .fluid-menu-item {
+    position: absolute; top: 0; left: 0;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    border: 2px solid var(--black);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    opacity: 0; transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s, background 0.2s, border-color 0.2s;
+    will-change: transform, opacity;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  .fluid-menu-item svg {
+    width: 20px; height: 20px;
+    stroke: var(--black); stroke-width: 1.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: stroke 0.2s, stroke-width 0.2s;
+  }
+
+  .fluid-menu-item:hover { background: var(--red); border-color: var(--red); }
+  .fluid-menu-item:hover svg { stroke: var(--cream); stroke-width: 2; }
+
+  .fluid-menu.expanded .fluid-menu-item:nth-child(2) { opacity: 1; transform: translateY(-64px); transition-delay: 0ms; }
+  .fluid-menu.expanded .fluid-menu-item:nth-child(3) { opacity: 1; transform: translateY(-128px); transition-delay: 40ms; }
+  .fluid-menu.expanded .fluid-menu-item:nth-child(4) { opacity: 1; transform: translateY(-192px); transition-delay: 80ms; }
+  .fluid-menu.expanded .fluid-menu-item:nth-child(5) { opacity: 1; transform: translateY(-256px); transition-delay: 120ms; }
+
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(2) { transition-delay: 120ms; }
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(3) { transition-delay: 80ms; }
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(4) { transition-delay: 40ms; }
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(5) { transition-delay: 0ms; }
+
+  .fluid-menu-item::after {
+    content: attr(data-label);
+    position: absolute; right: 68px; white-space: nowrap;
+    font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--black); background: var(--cream);
+    padding: 6px 12px; border: 2px solid var(--black);
+    opacity: 0; transform: translateX(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+  }
+
+  .fluid-menu-item:hover::after { opacity: 1; transform: translateX(0); }
+
+  @media (max-width: 768px) {
+    .fluid-menu { bottom: 20px; right: 20px; }
+    .fluid-menu-item::after { display: none; }
+  }
+
+  /* ========== GRAIN OVERLAY ========== */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">iwritewhatiwrite</a>
+  <ul class="nav-links">
+    <li><a href="articles.html">Articles</a></li>
+    <li><a href="#subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<div class="article-header">
+  <a href="articles.html" class="article-back"><span class="back-arrow">&larr;</span> Back to articles</a>
+  <div class="meta">
+    <span class="tag">Analysis</span>
+    <span class="date">27 Feb, 2026</span>
+    <span class="date">&middot; 9 min read</span>
+  </div>
+  <h1>What's Next For Crypto In LATAM?</h1>
+  <p class="subtitle">Latin America is quietly becoming one of the most important regions in crypto. Here's what's happening and why you should pay attention.</p>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <p>You might not be aware just yet, but LATAM is the last remaining continent to conquer. Brands are moving in, some are already here, but do they know what they're doing?</p>
+
+  <p>As in every region, marketing here is different. Trends are different. Social ties are different. The good news is that it all feels like a blank canvas for crypto.</p>
+
+  <p>The bad news? Adoption.</p>
+
+  <p>Boasting 300m online shoppers and spenders, the general internet user is no stranger to an app interface. I see Shein absolutely dominating in the clothing market. Cheap Chinese products, easily accessible, it's the LATAM dream.</p>
+
+  <div class="data-block">
+    <p>Largest market is Mexico with 28% market share &#x1F1F2;&#x1F1FD;</p>
+    <p>Influencer marketing is growing, but not liked</p>
+    <p>Most active countries digitally &mdash; Mexico, Brazil, Argentina</p>
+    <p>Chile peaked at 91% internet penetration</p>
+  </div>
+
+  <h2>Why Adoption Is Hard</h2>
+
+  <p>Aside from the obvious regional legislation and legal hurdles, the desynchronisation of content means having an immense diversification in your own growth strategies. Everything cannot just be blanket applied.</p>
+
+  <p>Countries are separated not just by borders, but also in GDP, spending habits, outlets and much more. What may be a pain point in one country, is not in the other. Of course, cross border payments are a shared interest, and a large reason as to why crypto could perform in the region, but beyond that, there's an even greater task.</p>
+
+  <p>The marketing.</p>
+
+  <p>Every region has its own distinct businesses that provide a similar service.</p>
+
+  <p>Let's focus on just payments. As a neobank, your end goal would be to have users across LATAM, all using your service.</p>
+
+  <p>But, you're competing against a group of already trusted regional providers. Colombia uses Nequi, Brazil uses Pix (amongst others), Mexico has multiple, but even their famous convenience store chain Oxxo &mdash; also famous in Colombia &mdash; has its own payments platform.</p>
+
+  <p>These relationships are built on trust. Nequi and Pix are central bank trusted or issued, and others like Yape in Peru are owned by major banks.</p>
+
+  <h2>How Can New Brands Succeed In The Region?</h2>
+
+  <p>Unfortunately, I've already wasted the opportunity to use 'the marketing' as a short, punchy, one-liner. But it's true.</p>
+
+  <p>The current titans of payment apps across LATAM fall short in their approaches to innovation.</p>
+
+  <div class="pull-quote">They are known through repeated use, not from intent.</div>
+
+  <p>They're used because vendors use them, and offer reduced payment fees. Nothing more.</p>
+
+  <p>However, time is running out. Nubank is one example emerging as a key player in the region. Adopting an elevated marketing and social media ecosystem that far exceeds competitors. Yet, it's more CeFi with crypto features, it's not purebred DeFi.</p>
+
+  <p>What we can learn from Nubank is that their social strategy works, it's not by chance that they have appeared as the dominant player on social media.</p>
+
+  <p>Now, allow me to clearly address the question at hand. Brands may succeed in LATAM if they correctly manage social media to grow a culture interested in product exploration.</p>
+
+  <h2>Why Does Product Exploration Matter</h2>
+
+  <p>Current population usage of the regional providers is driven by distribution and familiarity, not curiosity.</p>
+
+  <p>Swathes of customers did not adopt these out of sheer might to disrupt the traditional banking rails. Oh no. They were merely adopted because suddenly you didn't need to carry coins to buy a tinto and a cigarette on the corner of the street.</p>
+
+  <p>Thus, you need your content and product to align in purpose.</p>
+
+  <p>Entertain, explore, engage through your content, ensure this mentality is evident in the user who you want to do the latter in your app. Both are arguably traditional pillars of tech adoption, but in this case, DeFi does not, at face value, jump out as a necessity to most. The same goes for most investment vehicles. A consumer needs a phone, they can't see the benefit in having an ISA.</p>
+
+  <p>Your short term goal at succeeding should be measured in this, have you managed to create an audience and user that actively looks to explore your product, in order for it to become part of everyday life.</p>
+
+  <p>From behind your screens I hear you cry 'But how can this be achieved through content?'</p>
+
+  <p>Well...you won't believe this, but, marketing.</p>
+
+  <h2>Before The Product, Comes Personality</h2>
+
+  <p>Create a world of content so rich, there are many paths of exploration.</p>
+
+  <p>Your feeds, your interfaces, your channels are all discovery points for your audience.</p>
+
+  <p>Especially channels where your customers lurk. These must be accessible pages of information, which in this case, is content. Partnerships, dedication to visuals, post variety are all ways to communicate to audiences.</p>
+
+  <h2>User Funnelling Using Content As An Adoption Channel</h2>
+
+  <p>Real adoption for DeFi and associated services shall be difficult if intended audiences do not first know about the brand for reasons other than 'finance'.</p>
+
+  <p>As aforementioned, LATAM is somewhat of a blank canvas for marketing. Although brands have inevitably started AI ads at scale, true advertising and articulate marketing are still fresh.</p>
+
+  <p>With that being said, the customers have very little, but very strong ties to a select few brands. This spans across other industries, in some cases, too. Beer is a good example. There are 2-3 top brands per country. Maybe this is the Brit within me speaking, but that seems a tab bit low, no?</p>
+
+  <div class="pull-quote">Use your content to create an audience of explorers.</div>
+
+  <p>The point remains, use your content to create an audience of explorers. Allow them to build ties with the brand through positive association with how they have felt or interacted with them externally to product.</p>
+
+  <p>Your end goal biggest distribution channel should be your community in a continent that is rightfully known for having strong family and communal bonds.</p>
+
+  <h2>Where You Could GTM?</h2>
+
+  <p>So, you've got your revolutionary 6% cashback card ready to go, an Instagram account with 'el futuro de moneda' in its bio. Who do you target?</p>
+
+  <p>Let's ideate. For arguments sake, one would not suffice. It wouldn't be scaleability. But as discussed, the resources required to target a general LATAM user can be better spent hype focused, at times, to just a single group.</p>
+
+  <div class="gtm-card">
+    <h3>E-Commerce &amp; Marketplaces</h3>
+    <p>Reward remittances with better cashback and brand relationships with growing Ecom sites.</p>
+    <p>Industry expected to grow to $215 billion across LATAM in 2026.</p>
+    <p>Proven history of active consumer who exhibits desire traits (exploring products and stores).</p>
+    <p>However weak brand loyalty from consumers means platform partnership is a perceived risk.</p>
+    <p>Content can be pushed to an existing audience, already online.</p>
+  </div>
+
+  <div class="gtm-card">
+    <h3>Gamers &amp; Game Natives</h3>
+    <p>Active regularly online and familiar with gaming communities and game metrics. Partner and produce content for gamers.</p>
+    <p>Cross border marketing less of an issue as gamer content is communal.</p>
+    <p>69% of connected internet users in LATAM play games.</p>
+    <p>Spending behaviour is similar / required in crypto.</p>
+    <p>80% of LATAM gamers report spending money on games.</p>
+  </div>
+
+  <div class="gtm-card">
+    <h3>Small Business Owners</h3>
+    <p>Business owners who would be able to offer the account as a way of payment.</p>
+    <p>A great downfall that can only be known anecdotally, is that small vendors, cafes and micro businesses have very little ad space in LATAM. Every available space or countertop is covered up. In many cases, by a pre-existing competitor of another payment app.</p>
+    <p>Massive market, smaller chains and independent businesses dominate to a certain degree but not readily available online/across all apps.</p>
+    <p>88% that accept digital payments ranked trust as their top priority when choosing a digital payment provider.</p>
+  </div>
+
+  <div class="gtm-card">
+    <h3>Online Creatives &amp; Freelancers</h3>
+    <p>Never has a greater carrot been dangled than the great United States Dollar in South America.</p>
+    <p>46 million involved in the gig economy in South America.</p>
+    <p>$690M in revenue from freelancing platforms in 2025.</p>
+    <p>Content can be structured with the same underlying key message 'earn abroad easily'.</p>
+    <p>Online regularly, eager to explore products that can help their life and income.</p>
+    <p>Appreciate creative and relevant content.</p>
+  </div>
+
+  <p>Act fast, be creative and build trust.</p>
+
+  <p>If you want to get into the region, there is becoming a golden age in which to do so.</p>
+
+  <p>Ciao.</p>
+
+</div>
+
+<!-- END DIVIDER -->
+<div class="article-end">
+  <div class="article-end-line"></div>
+</div>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe" id="subscribe">
+  <h2>Get It Straight To Your Inbox</h2>
+  <p>No spam. No affiliate links. Just whatever I feel like writing about, whenever I feel like writing it.</p>
+  <div class="subscribe-form">
+    <input type="email" placeholder="your@email.com">
+    <button>Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">iwritewhatiwrite</div>
+  <div class="footer-copy">&copy; 2026 &mdash; No rights reserved. Steal my ideas, I dare you.</div>
+  <ul class="footer-links">
+    <li><a href="https://x.com/b3paystax" target="_blank" rel="noopener">Twitter/X</a></li>
+  </ul>
+</footer>
+
+<!-- FLUID MENU -->
+<div class="fluid-menu" id="fluidMenu">
+  <div class="fluid-menu-container">
+    <div class="fluid-menu-trigger" id="fluidMenuTrigger">
+      <svg class="icon-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+      <svg class="icon-close" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="6" y1="18" x2="18" y2="6"></line></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Home" onclick="window.location.href='index.html'">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Articles" onclick="window.location.href='articles.html'">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Subscribe" onclick="document.querySelector('.subscribe').scrollIntoView({behavior:'smooth'})">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Twitter/X" onclick="window.open('https://x.com/b3paystax','_blank')">
+      <svg viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fluid menu
+  const fluidMenu = document.getElementById('fluidMenu');
+  const fluidTrigger = document.getElementById('fluidMenuTrigger');
+  fluidTrigger.addEventListener('click', () => fluidMenu.classList.toggle('expanded'));
+  document.addEventListener('click', (e) => {
+    if (!fluidMenu.contains(e.target)) fluidMenu.classList.remove('expanded');
+  });
+  document.querySelectorAll('.fluid-menu-item').forEach(item => {
+    item.addEventListener('click', () => setTimeout(() => fluidMenu.classList.remove('expanded'), 200));
+  });
+</script>
+
+</body>
+</html>

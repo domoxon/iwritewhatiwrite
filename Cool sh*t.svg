@@ -1,0 +1,17 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#F5F0E8" stroke="#1A1A1A" stroke-width="4"/>
+  
+  <text x="50" y="80" font-family="'Space Mono', monospace" font-size="40" font-weight="700" fill="#1A1A1A">Cool</text>
+  
+  <text x="60" y="220" font-family="'Bebas Neue', sans-serif" font-size="180" letter-spacing="-5" fill="#1A1A1A">SH</text>
+  <text x="210" y="170" font-family="'Permanent Marker', cursive" font-size="100" fill="#D42B2B">*</text>
+  <text x="270" y="220" font-family="'Bebas Neue', sans-serif" font-size="180" letter-spacing="-5" fill="#1A1A1A">T</text>
+  
+  <text x="120" y="270" font-family="'Space Mono', monospace" font-size="35" font-style="italic" fill="#1A1A1A">I found</text>
+  <rect x="290" y="235" width="110" height="45" fill="#1A1A1A" />
+  <text x="300" y="270" font-family="'Bebas Neue', sans-serif" font-size="40" fill="#F5F0E8">THIS</text>
+  
+  <text x="250" y="350" font-family="'Space Mono', monospace" font-size="90" font-weight="900" letter-spacing="-8" fill="#1A1A1A" style="filter: drop-shadow(4px 4px 0px #D42B2B);">week</text>
+  
+  <path d="M500 50 Q550 100 500 150 T450 250" stroke="#D42B2B" stroke-width="3" fill="none" opacity="0.4"/>
+</svg>
