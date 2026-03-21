@@ -573,6 +573,24 @@
     transform: scale(1.02);
   }
 
+  /* ========== SUBSCRIBE CONFIRMED ========== */
+
+  .confirm-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--red);
+    letter-spacing: 3px;
+    margin-top: 16px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .confirm-text.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* ========== FOOTER ========== */
   footer {
     padding: 40px 48px;
@@ -583,8 +601,8 @@
   }
 
   .footer-logo {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 1rem;
+    font-family: 'Don Graffiti', cursive;
+    font-size: 1.4rem;
     color: var(--black);
   }
 
@@ -876,12 +894,14 @@
 <!-- SUBSCRIBE -->
 <section class="subscribe" id="subscribe">
   <h2>Get It Straight To Your Inbox</h2>
-  <p>No spam. No affiliate links. Just whatever I feel like writing about, whenever I feel like writing it.</p>
+  <p>Imagine how good an email from me will look between a LinkedIn notification and another discount you won't use.</p>
   <div class="subscribe-form">
     <input type="email" placeholder="your@email.com">
     <button>Subscribe</button>
   </div>
+  <div class="confirm-text" id="confirmText">CONFIRMED</div>
 </section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -994,6 +1014,42 @@
     card.style.transition = `opacity 0.5s ${i * 0.1}s, transform 0.5s ${i * 0.1}s, background 0.3s`;
     observer.observe(card);
   });
+
+  // =============================================
+  // SUBSCRIBE — Confirmed text
+  // =============================================
+  (function initSubscribe() {
+    const btn = document.querySelector('.subscribe-form button');
+    const input = document.querySelector('.subscribe-form input');
+    const confirm = document.getElementById('confirmText');
+    if (!btn || !confirm) return;
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const email = input.value.trim();
+      if (!email || !email.includes('@')) {
+        input.style.borderColor = 'var(--red-bright)';
+        input.style.transform = 'translateX(5px)';
+        setTimeout(() => { input.style.transform = 'translateX(-5px)'; }, 80);
+        setTimeout(() => { input.style.transform = ''; }, 160);
+        return;
+      }
+
+      // Submit to Beehiiv
+      const beehiivUrl = `https://magic.beehiiv.com/v1/efcc3705-0bd3-46b1-9d63-a07d706d664f?email=${encodeURIComponent(email)}`;
+      fetch(beehiivUrl, { mode: 'no-cors' });
+
+      // Show confirmed
+      input.value = '';
+      confirm.classList.add('show');
+
+      // Hide after 3 seconds
+      setTimeout(() => {
+        confirm.classList.remove('show');
+      }, 3000);
+    });
+  })();
 </script>
 
 </body>
