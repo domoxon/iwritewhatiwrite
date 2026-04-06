@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diamonds Are For...Sometimes | iwritewhatiwrite</title>
+<meta name="description" content="a crypto and ai newsletter which may or may not contain use of strong language">
+<link rel="icon" type="image/png" href="Graffiti quill with ink splatters.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Don Graffiti';
+    src: url('DonGraffiti.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7DA;
+    --black: #1A1A1A;
+    --red: #D42B2B;
+    --red-dark: #B01E1E;
+    --red-bright: #FF3333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  ::selection {
+    background: var(--red);
+    color: var(--cream);
+  }
+
+  /* ========== NAV ========== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: var(--cream);
+    border-bottom: 2px solid var(--black);
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Don Graffiti', cursive;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-logo:hover { color: var(--red); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--black);
+    text-decoration: none;
+    position: relative;
+    padding: 4px 8px;
+    transition: color 0.15s;
+  }
+
+  .nav-links a::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -6px; right: -6px; bottom: -4px;
+    background: var(--red);
+    border-radius: 2px;
+    transform: scaleX(0) rotate(-1deg);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+    background-image:
+      radial-gradient(circle at 10% 50%, var(--red-bright) 1px, transparent 2px),
+      radial-gradient(circle at 90% 30%, var(--red-bright) 1px, transparent 2px),
+      radial-gradient(circle at 50% 80%, var(--red-dark) 1px, transparent 2px),
+      radial-gradient(circle at 30% 20%, transparent 1px, var(--red) 1px);
+    background-size: 8px 8px, 6px 6px, 10px 10px, 100% 100%;
+  }
+
+  .nav-links a:hover::before { transform: scaleX(1) rotate(-1deg); }
+  .nav-links a:hover { color: var(--cream); }
+
+  /* ========== ARTICLE HEADER ========== */
+  .article-header {
+    padding: 140px 48px 60px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--black);
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: color 0.2s;
+  }
+
+  .article-back:hover { color: var(--red); }
+  .article-back .back-arrow { transition: transform 0.3s; }
+  .article-back:hover .back-arrow { transform: translateX(-4px); }
+
+  .article-header .meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .article-header .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cream);
+    background: var(--red);
+    padding: 4px 10px;
+  }
+
+  .article-header .date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(26,26,26,0.4);
+  }
+
+  .article-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  .article-header .subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: rgba(26,26,26,0.6);
+    max-width: 600px;
+  }
+
+  /* ========== ARTICLE BODY ========== */
+  .article-body {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  .article-body p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .article-body .pull-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    color: var(--red);
+    border-left: 4px solid var(--red);
+    padding-left: 24px;
+    margin: 48px 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* ========== DIVIDER ========== */
+  .article-end {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+    text-align: center;
+  }
+
+  .article-end-line {
+    width: 60px;
+    height: 3px;
+    background: var(--red);
+    margin: 0 auto 32px;
+  }
+
+  .article-end p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: rgba(26,26,26,0.5);
+    line-height: 1.8;
+  }
+
+  /* ========== SUBSCRIBE ========== */
+  .subscribe {
+    padding: 100px 48px;
+    background: var(--black);
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .subscribe h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .subscribe p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 40px;
+    opacity: 0.7;
+  }
+
+  .subscribe-form {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .subscribe-form input {
+    flex: 1;
+    padding: 16px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    background: transparent;
+    border: 2px solid rgba(245,240,232,0.3);
+    color: var(--cream);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .subscribe-form input::placeholder { color: rgba(245,240,232,0.35); }
+  .subscribe-form input:focus { border-color: var(--red); }
+
+  .subscribe-form button {
+    padding: 16px 32px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--red);
+    color: var(--cream);
+    border: 2px solid var(--red);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .subscribe-form button:hover {
+    background: var(--red-bright);
+    transform: scale(1.02);
+  }
+
+  .confirm-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--red);
+    letter-spacing: 3px;
+    margin-top: 16px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .confirm-text.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    padding: 40px 48px;
+    border-top: 2px solid var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo { font-family: 'Permanent Marker', cursive; font-size: 1rem; color: var(--black); }
+  .footer-copy { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: rgba(26,26,26,0.4); letter-spacing: 1px; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--black); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--red); }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .article-header { opacity: 0; animation: fadeUp 0.6s 0.2s forwards; }
+  .article-body { opacity: 0; animation: fadeUp 0.6s 0.4s forwards; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 1px; }
+    .article-header { padding: 120px 24px 40px; }
+    .article-body { padding: 0 24px 60px; }
+    .article-end { padding: 0 24px 60px; }
+    .article-body .pull-quote { font-size: 1.6rem; }
+    .subscribe { padding: 60px 24px; }
+    .subscribe-form { flex-direction: column; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  /* ========== FLUID MENU ========== */
+  .fluid-menu {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 200;
+    width: 56px;
+  }
+
+  .fluid-menu-container { position: relative; }
+
+  .fluid-menu-trigger {
+    position: relative;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--black);
+    border: 2px solid var(--black);
+    cursor: pointer;
+    z-index: 210;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, border-color 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .fluid-menu-trigger:hover { background: var(--red); border-color: var(--red); }
+
+  .fluid-menu-trigger svg {
+    width: 22px; height: 22px;
+    stroke: var(--cream); stroke-width: 1.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .fluid-menu-trigger .icon-menu { opacity: 1; transform: scale(1) rotate(0deg); }
+  .fluid-menu-trigger .icon-close { opacity: 0; transform: scale(0) rotate(-180deg); }
+  .fluid-menu.expanded .fluid-menu-trigger .icon-menu { opacity: 0; transform: scale(0) rotate(180deg); }
+  .fluid-menu.expanded .fluid-menu-trigger .icon-close { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .fluid-menu-item {
+    position: absolute; top: 0; left: 0;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    border: 2px solid var(--black);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    opacity: 0; transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s, background 0.2s, border-color 0.2s;
+    will-change: transform, opacity;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  .fluid-menu-item svg {
+    width: 20px; height: 20px;
+    stroke: var(--black); stroke-width: 1.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: stroke 0.2s, stroke-width 0.2s;
+  }
+
+  .fluid-menu-item:hover { background: var(--red); border-color: var(--red); }
+  .fluid-menu-item:hover svg { stroke: var(--cream); stroke-width: 2; }
+
+  .fluid-menu.expanded .fluid-menu-item:nth-child(2) { opacity: 1; transform: translateY(-64px); transition-delay: 0ms; }
+  .fluid-menu.expanded .fluid-menu-item:nth-child(3) { opacity: 1; transform: translateY(-128px); transition-delay: 40ms; }
+  .fluid-menu.expanded .fluid-menu-item:nth-child(4) { opacity: 1; transform: translateY(-192px); transition-delay: 80ms; }
+  .fluid-menu.expanded .fluid-menu-item:nth-child(5) { opacity: 1; transform: translateY(-256px); transition-delay: 120ms; }
+
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(2) { transition-delay: 120ms; }
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(3) { transition-delay: 80ms; }
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(4) { transition-delay: 40ms; }
+  .fluid-menu:not(.expanded) .fluid-menu-item:nth-child(5) { transition-delay: 0ms; }
+
+  .fluid-menu-item::after {
+    content: attr(data-label);
+    position: absolute; right: 68px; white-space: nowrap;
+    font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--black); background: var(--cream);
+    padding: 6px 12px; border: 2px solid var(--black);
+    opacity: 0; transform: translateX(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+  }
+
+  .fluid-menu-item:hover::after { opacity: 1; transform: translateX(0); }
+
+  @media (max-width: 768px) {
+    .fluid-menu { bottom: 20px; right: 20px; }
+    .fluid-menu-item::after { display: none; }
+  }
+
+  /* ========== GRAIN OVERLAY ========== */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">iwritewhatiwrite</a>
+  <ul class="nav-links">
+    <li><a href="articles.html">Articles</a></li>
+    <li><a href="#subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<div class="article-header">
+  <a href="articles.html" class="article-back"><span class="back-arrow">&larr;</span> Back to articles</a>
+  <div class="meta">
+    <span class="tag">Analysis</span>
+    <span class="date">6 Apr, 2026</span>
+    <span class="date">&middot; 4 min read</span>
+  </div>
+  <h1>Diamonds Are For...Sometimes</h1>
+  <p class="subtitle">The diamond industry had a great run, but did you know the global consumption was built on a lie? The generational interest in the stones was nothing more than an expertly executed PR campaign to increase demand. Here's how it worked.</p>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <p>The greatest PR campaign you've never heard of. Diamonds.</p>
+
+  <p>In recent years, diamond sellers have faced massively decreasing valuations, with this downfall attributed to lab made alternatives.</p>
+
+  <p>However, this wasn't always the case. In the 1940s, diamonds were not an in demand product, they were exclusively for those who could afford it, and those who couldn't, didn't try to buy them. This left De Beers, the US' largest supplier, with a demand issue.</p>
+
+  <div class="pull-quote">So what did they do? They created their own demand.</div>
+
+  <p>After hiring a PR firm from Philadelphia, the term 'diamonds are forever' was born. But things didn't just stop at a slogan. The firm paid Hollywood script writers to begin including diamond proposals into scripts and thus, pop culture. The two month salary rule? That was a rule made by design.</p>
+
+  <p>The entire campaign fabricated an idea that diamonds are rare and worth the elevated costs. In reality, diamonds are nothing more than carbon and their suppliers have warehouses filled with them.</p>
+
+  <p>Scarcity drove up prices, lab grown diamonds tore apart the entire business.</p>
+
+  <div class="pull-quote">From a valuation of $9.2 billion 3 years ago, they're now worth $2.2 billion.</div>
+
+  <p>De Beers were late in noticing this trend. From a valuation of $9.2 billion 3 years ago, they're now worth $2.2 billion. They had to act fast, and they tried.</p>
+
+  <p>In 2018 they created Lightbox which offered cheap, lab grown diamonds. The intention was to make 'fake' diamonds look cheap and increase demand for their large supply of real ones. It didn't work.</p>
+
+  <p>What it did do was propel the lab grown industry ten fold. Whereas they charged $800 for their lab grown diamonds, American grocery stores began charging $200 for the same product. Prices collapsed across the board.</p>
+
+  <p>The result? De Beers' parent company is now in what they're calling "advanced discussion" to sell the brand. This, of course, won't be easy for a company that lost $500 million in 2025 amidst a dying industry.</p>
+
+  <p>One PR campaign changed the world's view of a common carbon crystal, and 100 years later, it's beginning to fall apart.</p>
+
+</div>
+
+<!-- END DIVIDER -->
+<div class="article-end">
+  <div class="article-end-line"></div>
+</div>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe" id="subscribe">
+  <h2>Get It Straight To Your Inbox</h2>
+  <p>No spam. No affiliate links. Just whatever I feel like writing about, whenever I feel like writing it.</p>
+  <div class="subscribe-form">
+    <input type="email" placeholder="your@email.com">
+    <button>Subscribe</button>
+  </div>
+  <div class="confirm-text" id="confirmText">CONFIRMED</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">iwritewhatiwrite</div>
+  <div class="footer-copy">&copy; 2026 &mdash; No rights reserved. Steal my ideas, I dare you.</div>
+  <ul class="footer-links">
+    <li><a href="https://x.com/b3paystax" target="_blank" rel="noopener">Twitter/X</a></li>
+  </ul>
+</footer>
+
+<!-- FLUID MENU -->
+<div class="fluid-menu" id="fluidMenu">
+  <div class="fluid-menu-container">
+    <div class="fluid-menu-trigger" id="fluidMenuTrigger">
+      <svg class="icon-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+      <svg class="icon-close" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="6" y1="18" x2="18" y2="6"></line></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Home" onclick="window.location.href='index.html'">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Articles" onclick="window.location.href='articles.html'">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Subscribe" onclick="document.querySelector('.subscribe').scrollIntoView({behavior:'smooth'})">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+    <div class="fluid-menu-item" data-label="Twitter/X" onclick="window.open('https://x.com/b3paystax','_blank')">
+      <svg viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fluid menu
+  const fluidMenu = document.getElementById('fluidMenu');
+  const fluidTrigger = document.getElementById('fluidMenuTrigger');
+  fluidTrigger.addEventListener('click', () => fluidMenu.classList.toggle('expanded'));
+  document.addEventListener('click', (e) => {
+    if (!fluidMenu.contains(e.target)) fluidMenu.classList.remove('expanded');
+  });
+  document.querySelectorAll('.fluid-menu-item').forEach(item => {
+    item.addEventListener('click', () => setTimeout(() => fluidMenu.classList.remove('expanded'), 200));
+  });
+
+  // Subscribe — Confirmed text
+  (function initSubscribe() {
+    const btn = document.querySelector('.subscribe-form button');
+    const input = document.querySelector('.subscribe-form input');
+    const confirm = document.getElementById('confirmText');
+    if (!btn || !confirm) return;
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const email = input.value.trim();
+      if (!email || !email.includes('@')) {
+        input.style.borderColor = 'var(--red-bright)';
+        input.style.transform = 'translateX(5px)';
+        setTimeout(() => { input.style.transform = 'translateX(-5px)'; }, 80);
+        setTimeout(() => { input.style.transform = ''; }, 160);
+        return;
+      }
+
+      // Submit to Beehiiv
+      const beehiivUrl = `https://magic.beehiiv.com/v1/efcc3705-0bd3-46b1-9d63-a07d706d664f?email=${encodeURIComponent(email)}`;
+      fetch(beehiivUrl, { mode: 'no-cors' });
+
+      // Show confirmed
+      input.value = '';
+      confirm.classList.add('show');
+
+      // Hide after 3 seconds
+      setTimeout(() => {
+        confirm.classList.remove('show');
+      }, 3000);
+    });
+  })();
+</script>
+
+</body>
+</html>
